@@ -1,18 +1,41 @@
+
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+
 import logo from './logo.svg';
+
 import './App.css';
-import Product from "./components/Product";
-import products from "./data/products.json";
+import Home from './pages/Home'
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Product from './pages/Product';
 
 function App() {
   return (
-    <div className="bg-gray-200 py-4 dark:bg-gray-800">
-      <div className="md:w-1/2 mx-auto">
-        {products.map((product) => (
-          <Product product={product} key={product.id} />
-        ))}
+    <Router>
+      <div className="App">
+        <ul className="App-header">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/product">Product</Link>
+          </li>
+        </ul>
+        <Routes>
+          <Route exact path='/' element={< Home />}></Route>
+          <Route exact path='/about' element={< About />}></Route>
+          <Route exact path='/contact' element={< Contact />}></Route>
+          <Route exact path='/product' element={< Product />}></Route>
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
